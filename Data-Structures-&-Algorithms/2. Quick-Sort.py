@@ -1,7 +1,9 @@
 """
 Algorithm: Quick Sort
 
-Sources: https://www.geeksforgeeks.org/dsa/quick-sort-algorithm/
+Sources: 
+    - https://www.geeksforgeeks.org/dsa/quick-sort-algorithm/
+    - https://www.w3schools.com/dsa/dsa_algo_quicksort.php
 
 Description:
     Picks an element as a pivot and 
@@ -106,3 +108,60 @@ Time & Space Complexity:
         Worst:   O(n)
 
 """
+
+
+# Imports
+from timeit import default_timer as timer
+
+
+# Global input which all solutions use
+items = list(map(int, input("Enter numbers separated by space: ").split()))
+
+
+# Main implimentations for the quick sort algorithm
+
+class quickSort:
+    # Calls itself if sub-array size larger than 1
+    def quickSort(self, array, low = 0, high = None):
+        """Recursive Algorithm"""
+        
+        if high is None:
+            high = len(array) - 1
+        
+        if low <= high:
+            pivot_index = self.partition(array, low, high)
+            self.quickSort(array, low, pivot_index-1)
+            self.quickSort(array, pivot_index+1, high)
+
+    # Recieves sub-array, moves values arround and swaps the pivot
+    # Element into the sub-array and returns the index where the
+    # next split in sub-arrays happens
+    def partition(self, array, low, high):
+        # Choose pivot 
+        pivot = array[high]
+        i = low - 1
+
+        # Loops through index low to high comparing value to pivot
+        # if less than or equal to, increment i and 
+        # swap array[i] and array[j] without need for temp variable 
+        for j in range(low, high):
+            if (array[j] < pivot):
+                i += 1
+                array[i], array[j] = array[j], array[i]
+
+        # 
+        array[i+1], array[high] = array[high], array[i+1]
+
+        return i+1
+    
+
+# Benchmarking the algorithms
+
+# Quick Sort
+print("#########################")
+start = timer()
+quickSort().quickSort(items)
+print("Quick Sort: ", items)
+end = timer()
+print("Execution time: ", end - start, "seconds")
+print("#########################")
