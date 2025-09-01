@@ -3,7 +3,7 @@ Algorithm: Insertion Sort
 
 Sources:
     - https://www.geeksforgeeks.org/dsa/insertion-sort-algorithm/
-    
+
 Description:
     Insertion sort is a simple sorting
     algorithm that works by iteratively
@@ -91,7 +91,7 @@ from timeit import default_timer as timer
 items = list(map(int, input("Enter numbers separated by space: ").split()))
 
 
-# Main implimentations for the bubble sort algorithms
+# Main implimentations for the insertion sort algorithms
 
 class insertionSort:
     def insertionSort(self, arr):
