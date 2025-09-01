@@ -233,3 +233,71 @@ Time & Space Complexity:
         Worst:      0(1)
         
 """
+
+
+# Imports
+from timeit import default_timer as timer
+
+
+# Global input which all solutions use
+items = list(map(int, input("Enter numbers separated by space: ").split()))
+
+
+# Main implimentations for the heap sort algorithm
+
+class heapSort:
+    
+    # Helper function 
+    # Heapify subtree rooted with node i (index in arr[])
+    def heapify(self, arr, n, i):
+        # Intialise largest element as root
+        largest = i
+
+        # Left index = (2*i) + 1
+        # Right index = (2*i) + 2
+        l, r = (2 * i) + 1, (2 * i) + 2
+
+        # If (left) child is larger than root
+        if (l < n) and (arr[l] > arr[largest]):
+            # Then swap
+            largest = l
+        
+        # If (right) child is larger than largest so far
+        if (r < n) and (arr[r] > arr[largest]):
+            # Then swap
+            largest = r
+
+        # If largest is not root
+        if largest != i:
+            arr[i], arr[largest] = arr[largest], arr[i] # Swap
+
+            # Recursively heapify affected sub-tree
+            self.heapify(arr, n, largest)
+
+
+    def heapSort(self, arr):
+        n = len(arr)
+
+        # Build heap (rearrange array)
+        for i in range(((n // 2) -1), -1, -1):
+            self.heapify(arr, n, i)
+
+        # One by one extract element from heap
+        for i in range((n - 1), 0, -1):
+            # Move root to end
+            arr[0], arr[i] = arr[i], arr[0]
+
+            # Call max-heapify on the reduced heap
+            self.heapify(arr, i, 0)
+    
+
+# Benchmarking the algorithms
+
+# Quick Sort
+print("#########################")
+start = timer()
+heapSort().heapSort(items)
+print("Quick Sort: ", items)
+end = timer()
+print("Execution time: ", end - start, "seconds")
+print("#########################")
