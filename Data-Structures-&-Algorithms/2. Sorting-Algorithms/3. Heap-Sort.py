@@ -293,11 +293,11 @@ class heapSort:
 
 # Benchmarking the algorithms
 
-# Quick Sort
+# Heap Sort
 print("#########################")
 start = timer()
 heapSort().heapSort(items)
-print("Quick Sort: ", items)
+print("Heap Sort: ", items)
 end = timer()
 print("Execution time: ", end - start, "seconds")
 print("#########################")
