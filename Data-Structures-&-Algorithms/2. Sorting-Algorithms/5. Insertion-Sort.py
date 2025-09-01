@@ -1,6 +1,9 @@
 """
 Algorithm: Insertion Sort
 
+Sources:
+    - https://www.geeksforgeeks.org/dsa/insertion-sort-algorithm/
+    
 Description:
     Insertion sort is a simple sorting
     algorithm that works by iteratively
