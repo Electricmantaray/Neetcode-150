@@ -29,3 +29,23 @@ Recommended Time & Space Complexity:
     Time:   O(n)
     Space:  O(n)
 """
+from typing import List
+class Solution1:
+    """
+    Hash Map Two pass
+
+    Time & Space Complexity Achieved:
+        Time: O(n)
+    
+        Space: O(n)
+    """
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        indices = {}
+
+        for i, num in enumerate(nums):
+            difference = target - num
+
+            if difference in indices:
+                return [indices[difference], i]
+
+            indices[num] = i
