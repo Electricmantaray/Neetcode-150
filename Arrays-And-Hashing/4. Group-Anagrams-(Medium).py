@@ -35,3 +35,29 @@ Recommended Time & Space Complexity:
     Space:  O(m)
 """
 
+from typing import List
+
+class Solution1:
+    """
+    Time & Space Complexity Achieved:
+        Time: O(m * n)
+    
+        Space: O(m * n)
+        Not the target space complexity
+    """
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        groups = {}
+
+        for str in strs:
+            freq = [0]*26
+
+            for char in str:
+                i = ord(char)-ord('a')
+                freq[i] += 1
+
+            key = tuple(freq)
+            if key not in groups:
+                groups[key] = []
+            groups[key].append(str)
+        
+        return list(groups.values())
